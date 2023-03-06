@@ -1,11 +1,9 @@
 ---
-- hosts: webservers 
+- hosts: webservers
   become: True
   tasks:
-    - name: Install packages
-      yum:
-        name: "httpd"
-        state: "present"
+    - name: Install latest version of Apache
+      apt: name=apache2 update_cache=yes state=latest
     - name: Start Apache server
       service:
         name: httpd

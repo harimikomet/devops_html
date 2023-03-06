@@ -13,6 +13,11 @@
       copy:
         src: index.html
         dest: /var/www/html/
+    - name: "UFW firewall allow HTTP on port {{ http_port }}"
+      ufw:
+        rule: allow
+        port: "{{ http_port }}"
+        proto: tcp
 
   handlers:
     - name: restart-apache

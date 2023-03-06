@@ -13,12 +13,15 @@
       copy:
         src: index.html
         dest: /var/www/html/
-    - name: enabled mod_rewrite
-      apache2_module: name=rewrite state=present
-      notify:
-        - restart apache2
 
   handlers:
-    - name: restart-apache
-      service: name=apache2 state=restarted
+    - name: Reload Apache
+      service:
+        name: apache2
+        state: reloaded
+
+    - name: Restart Apache
+      service:
+        name: apache2
+        state: restarted
 ...
